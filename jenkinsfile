@@ -29,9 +29,11 @@ pipeline {
 		    }
         }
 		
-	stage ('Deploy Stage') {
+	stage ('Deployment Stage') {
             steps {
-        	    sh 'cp ./target/demo-0.0.1-SNAPSHOT.war /root/tomcat9/webapps/.'
+        	    withMaven(maven : 'MAVEN_HOME') {
+                    sh 'mvn deploy'
+                }
                 		
             }
         }
